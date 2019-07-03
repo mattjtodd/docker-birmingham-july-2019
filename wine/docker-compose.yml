@@ -1,0 +1,16 @@
+version: '3.4'
+
+services:
+  notebook:
+    image: jupyter/all-spark-notebook:2c80cf3537ca
+    environment:
+      - SPARK_OPTS="--driver-memory=6G"
+    ports:
+      - 8888:8888
+    command: start-notebook.sh --NotebookApp.token=''
+    volumes:
+      - type: bind
+        source: ./work
+        target: /home/jovyan/work
+      - ./data:/home/jovyan/data:ro
+        
